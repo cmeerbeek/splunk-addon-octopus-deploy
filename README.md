@@ -25,6 +25,7 @@ The Splunk Add-On for Octopus contains three apps:
 Installation of the apps can be done using the Splunk UI as explained below. If you have an index cluster please install TA-Octopus-Idx using the following instructions on [Splunk Docs](https://docs.splunk.com/Documentation/Splunk/latest/Indexer/Manageappdeployment). For search-head cluster please install TA-Octopus-Sh using the following instruction on [Splunk Docs](http://docs.splunk.com/Documentation/Splunk/6.5.1/DistSearch/PropagateSHCconfigurationchanges).
 
 **Install using Splunk UI:**
+
 1. Select "Manage Apps" from the Apps dropdown.
 2. Select the "Install app from file" button.
 3. Select the generated `TA-Octopus-<Idx|Fwd|Sh>.spl` package.
