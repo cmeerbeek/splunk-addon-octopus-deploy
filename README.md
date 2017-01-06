@@ -42,6 +42,8 @@ The following sourcetypes are available:
 * octopus:deployments
 * octopus:events
 * octopus:environments
+* octopus:users
+* octopus:tasks
 
 ## ChangeLog
 
