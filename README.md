@@ -13,7 +13,7 @@ Too make sure everything works correctly make sure the following is available an
 1. A working Octopus application
 2. Access to the REST API port on the Octopus server from a Heavy Forwarder or Splunk single instance (port 80 for HTTP and port 443 for HTTP or else if configured differently)
 3. An API key to retrieve data from Octopus. See [Octopus Wiki](https://github.com/OctopusDeploy/OctopusDeploy-Api/wiki).
-4. A Splunk Heavy Forwarder or Single Instance with Splunk 6.0.x or higher
+4. A Splunk Heavy Forwarder or Single Instance with Splunk 6.0.x or higher running on Linux or Unix or OS X.
 
 ### Install instructions
 
@@ -60,6 +60,7 @@ See [CHANGELOG](CHANGELOG.md) for details.
 ## TODO
 
 * Convert Add-On to Modular Input
+* Support for running the Add-On on Windows Splunk install
  
 ## Copyright
 
