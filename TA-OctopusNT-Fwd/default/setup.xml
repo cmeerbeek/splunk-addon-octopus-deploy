@@ -1,0 +1,92 @@
+<setup>
+  <block title="Configure the add-on">
+    <text>Setup page for Octopus Add-On</text>
+  </block>
+
+  <block title="Generic Configuration"
+         endpoint="octopus/octopusconf" entity="octopus">
+
+      <input field="hostname">
+        <label>Enter the Octopus hostname (HOSTNAME:PORT)</label>
+        <type>text</type>
+      </input>
+
+      <input field="protocol">
+        <label>Enter the protocol (http or https)</label>
+        <type>text</type>
+      </input>
+
+      <input field="apikey">
+        <label>Enter the Octopus API-key (http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key)</label>
+        <type>text</type>
+      </input>
+  </block>
+
+
+  <block title="Inputs Configuration" endpoint="admin/script" entity="*">
+    <input field="interval" entity=".%255Cbin%255Cget_machines.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_machines.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_projects.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_projects.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_releases.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_releases.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_deployments.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_deployments.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_events.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_events.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_environments.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_environments.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_users.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_users.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+    <input field="interval" entity=".%255Cbin%255Cget_tasks.py">
+      <label>Polling Interval (sec): $name$</label>
+      <type>text</type>
+    </input>
+    <input field="enabled" old_style_disable="true" entity=".%255Cbin%255Cget_tasks.py">
+      <label>Enable: $name$</label>
+      <type>bool</type>
+    </input>
+  </block>
+</setup>
