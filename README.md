@@ -19,7 +19,8 @@ Too make sure everything works correctly make sure the following is available an
 
 The Splunk Add-On for Octopus contains three apps:
 - TA-Octopus-Idx > Contains index configuration and index-time configurations
-- TA-Octopus-Fwd > Contains all the inputs which retrieve the data
+- TA-OctopusNT-Fwd > Contains all the inputs which retrieve the data if you run Splunk on Windows
+- TA-OctopusNIX-Fwd > Contains all the inputs which retrieve the data if you run Splunk on NIX-systems
 - TA-Octopus-Sh > Contains all search-time configurations
 
 Installation of the apps can be done using the Splunk UI as explained below. If you have an index cluster please install TA-Octopus-Idx using the following instructions on [Splunk Docs](https://docs.splunk.com/Documentation/Splunk/latest/Indexer/Manageappdeployment). For search-head cluster please install TA-Octopus-Sh using the following instruction on [Splunk Docs](http://docs.splunk.com/Documentation/Splunk/6.5.1/DistSearch/PropagateSHCconfigurationchanges).
@@ -60,7 +61,7 @@ See [CHANGELOG](CHANGELOG.md) for details.
 ## TODO
 
 * Convert Add-On to Modular Input
-* Support for running the Add-On on Windows Splunk install
+* Create one Fwd app for both NIX and Windows
  
 ## Copyright
 
