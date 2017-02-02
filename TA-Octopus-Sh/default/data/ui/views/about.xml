@@ -1,0 +1,78 @@
+<dashboard script="autodiscover.js, last3monthsdeployments.js" stylesheet="octopusdeploy.css">
+  <label>About</label>
+  <row>
+    <html>
+      <article class="markdown-body">
+        <h1 id="octopus-deploy-app-for-splunk">
+          <a aria-hidden="true" class="headeranchor-link" href="#octopus-deploy-app-for-splunk" name="user-content-octopus-deploy-app-for-splunk">
+            <span class="headeranchor"></span>
+          </a>Octopus Deploy App for Splunk</h1>
+        <p>The Octopus Deploy App for Splunk provides a
+          <a href="http://docs.splunk.com/Documentation/Splunk/6.2.4/AdvancedDev/ModInputsIntro">modular input</a>
+          to ingest data from an
+          <a href="http://octopusdeploy.com/">Octopus Deploy</a>
+          instance, and a set of dashboards and views to analyse the data.</p>
+        <p>This app works with Octopus Deploy 3.7+.  You will need an
+          <a href="http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key">API Key</a>
+          from your Octopus Server.</p>
+        <p>Once the data input(s) have been configured, searches can be performed using the following source types:</p>
+        <ul>
+          <li>Users :
+            <code>octopus:users</code>
+          </li>
+          <li>Tasks :
+            <code>octopus:tasks</code>
+          </li>
+          <li>Events :
+            <code>octopus:events</code>
+          </li>
+          <li>Deployments :
+            <code>octopus:deployments</code>
+          </li>
+          <li>Releases :
+            <code>octopus:releases</code>
+          </li>
+          <li>Environments :
+            <code>octopus:environments</code>
+          </li>
+          <li>Projects :
+            <code>octopus:projects</code>
+          </li>
+          <li>Machines :
+            <code>octopus:machines</code>
+          </li>
+        </ul>
+        <h2 id="prerequisites">
+          <a aria-hidden="true" class="headeranchor-link" href="#prerequisites" name="user-content-prerequisites">
+            <span class="headeranchor"></span>
+          </a>Prerequisites</h2>
+        <ul>
+          <li>Splunk Enterprise version 6.4 or later.</li>
+        </ul>
+        <h1 id="feedback-and-issues">
+          <a aria-hidden="true" class="headeranchor-link" href="#feedback-and-issues" name="user-content-feedback-and-issues">
+            <span class="headeranchor"></span>
+          </a>Feedback and Issues</h1>
+        <ul>
+          <li>
+            <a href="https://github.com/cmeerbeek/splunk-addon-octopus-deploy">Github Repo</a>
+          </li>
+          <li>
+            <a href="https://github.com/cmeerbeek/splunk-addon-octopus-deploy/issues">Issues</a>
+          </li>
+        </ul>
+        <h1 id="attributions">
+          <a aria-hidden="true" class="headeranchor-link" href="#attributions" name="user-content-attributions">
+            <span class="headeranchor"></span>
+          </a>Attributions</h1>
+        <p>Special Thanks go to the following libraries that make this Splunk App possible.</p>
+        <ul>
+          <li>
+            <a href="http://octopusdeploy.com/">Octopus Deploy</a>
+          </li>
+        </ul>
+      </article>
+    </html>
+  </row>
+
+</dashboard>

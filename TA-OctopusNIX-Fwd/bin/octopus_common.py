@@ -8,7 +8,7 @@ for use in the Octopus TA integrations.
 """
 
 import ConfigParser
-import os, logging, sys
+import os, logging, sys, time
 import splunk.bundle as sb
 import splunk.Intersplunk as isp
 from splunk.clilib import cli_common as cli
@@ -54,6 +54,8 @@ def getSelfConfStanza(stanza):
   return apikeyconf[stanza]
 
 def writeCheckPoint(sourcetype, checkpoint):
+  logger = setup_logging()
+  logger.info(time.time())
   appdir = os.path.dirname(os.path.dirname(__file__))
   last_eventid_filepath = os.path.join(appdir, "local", "octopus-" + sourcetype + ".chk")
 
@@ -62,10 +64,12 @@ def writeCheckPoint(sourcetype, checkpoint):
     last_eventid_file.write(checkpoint)
     last_eventid_file.close()   
   except IOError:
-    sys.stderr.write('Error: Failed to write last_eventid to file: ' + last_eventid_filepath + '\n')
+    logger.error('Error: Failed to write last_eventid to file: ' + last_eventid_filepath + '\n')
     sys.exit(2)
 
 def readCheckPoint(sourcetype):
+  logger = setup_logging()
+  logger.info(time.time())
   appdir = os.path.dirname(os.path.dirname(__file__))
   last_eventid_filepath = os.path.join(appdir, "local", "octopus-" + sourcetype + ".chk")
   checkpoint = 0;
@@ -76,9 +80,9 @@ def readCheckPoint(sourcetype):
       checkpoint = int(last_eventid_file.readline())
       last_eventid_file.close()   
     except IOError:
-      sys.stderr.write('Error: Failed to read last_eventid file, ' + last_eventid_filepath + '\n')
+      logger.error('Error: Failed to read last_eventid file, ' + last_eventid_filepath + '\n')
       sys.exit(2)
   else:
-    sys.stderr.write('Warning: ' + last_eventid_filepath + ' file not found! Starting from zero. \n')
+    logger.warning('Warning: ' + last_eventid_filepath + ' file not found! Starting from zero. \n')
 
   return checkpoint
