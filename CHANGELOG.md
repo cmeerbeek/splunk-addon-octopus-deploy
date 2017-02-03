@@ -13,3 +13,7 @@ Added dashboards to TA-Octopus-Sh.
 ## 0.4.0
 
 Transformed JS dashboards to Splunk Core dashboards.
+
+## 0.4.1
+
+Fixed inproper props.conf for Forwarder Add-Ons.
