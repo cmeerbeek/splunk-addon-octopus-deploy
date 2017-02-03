@@ -1,0 +1,94 @@
+<dashboard>
+  <label>Deployment</label>
+  <row>
+    <panel>
+      <title>Outcome by Project (Last 90 days)</title>
+      <chart>
+        <search>
+          <query>index=octopus sourcetype=octopus:deployments earliest=-3mon@mon | join EnvironmentId [ search index=octopus sourcetype=octopus:environments | rename Id as EnvironmentId, Name as EnvironmentName, LastModifiedBy as EnvironmentLastModifiedBy ] | join ReleaseId [ search index=octopus sourcetype=octopus:releases | rename Id as ReleaseId, Version as ReleaseVersion] | join ProjectId [ search index=octopus sourcetype=octopus:projects | rename Id as ProjectId, Name as ProjectName]  | join TaskId [ search index=octopus sourcetype=octopus:tasks | rename Id as TaskId] | chart count(TaskId) by ProjectName, State</query>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisLabelsY.majorUnit">1</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Longest Releases through Environments</title>
+      <table>
+        <search>
+          <query>index=octopus sourcetype="octopus:deployments" | join EnvironmentId [ search index=octopus sourcetype="octopus:environments" | rename Id as EnvironmentId, Name as EnvironmentName, LastModifiedBy as EnvironmentLastModifiedBy ] | join ReleaseId [ search index=octopus sourcetype="octopus:releases" | rename Id as ReleaseId, Version as ReleaseVersion] | join ProjectId [ search index=octopus sourcetype="octopus:projects" | rename Id as ProjectId, Name as ProjectName] | sort -EnvironmentLastModifiedBy | transaction ReleaseId | stats count(EnvironmentId) as "Environments Released To" by duration, ProjectName, ReleaseVersion | eval DurationInHours = duration/60/60 | eval "Duration In Days" = DurationInHours/24 |  sort -"Environments Released To", -duration |rename ProjectName as "Project Name", ReleaseVersion as "Release Version", DurationInHours as "Duration in Hours" | fields "Project Name", "Release Version", "Environments Released To", "Duration In Days", "Duration in Hours"</query>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Deployment Duration</title>
+      <chart>
+        <search>
+          <query>index=octopus sourcetype="octopus:deployments" | join TaskId [ search index=octopus sourcetype="octopus:tasks" | rename Id as TaskId] | eval it = strptime(StartTime, "%Y-%m-%dT%H:%M:%S.%3N") | eval ot = strptime(CompletedTime, "%Y-%m-%dT%H:%M:%S.%3N") | eval diff = tostring((ot - it), "duration") | rex field=diff "(?&lt;HH&gt;\d+):(?&lt;MM&gt;\d+):(?&lt;SS&gt;\d+)" | eval durationInSecs = (HH * 3600) + (MM * 60) + SS | stats count(durationInSecs) as duration by durationInSecs</query>
+          <earliest>$earliest$</earliest>
+          <latest>$latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisLabelsY.majorUnit">1</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">Number of Deployments</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

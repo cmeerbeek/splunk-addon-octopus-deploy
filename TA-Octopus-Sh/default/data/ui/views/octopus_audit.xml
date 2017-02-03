@@ -1,0 +1,53 @@
+<form>
+  <label>Octopus Audit</label>
+  <fieldset submitButton="false">
+    <input type="time" token="timeSelector">
+      <label>Select a timerange</label>
+      <default>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="categorySelector">
+      <label>Select a category</label>
+      <choice value="*">All</choice>
+      <fieldForLabel>Category</fieldForLabel>
+      <fieldForValue>Category</fieldForValue>
+      <search>
+        <query>index=octopus sourcetype=octopus:events | stats count by Category</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <default>*</default>
+    </input>
+    <input type="dropdown" token="userSelector">
+      <label>Select a user</label>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <fieldForLabel>Username</fieldForLabel>
+      <fieldForValue>Username</fieldForValue>
+      <search>
+        <query>index=octopus sourcetype=octopus:events | stats count by Username</query>
+      </search>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>index=octopus sourcetype=octopus:events Category=$categorySelector$ Username=$userSelector$ | rename Id as EventId | table _time, Category, Username, Message | sort -_time | rename _time as Time</query>
+          <earliest>$timeSelector.earliest$</earliest>
+          <latest>$timeSelector.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</form>

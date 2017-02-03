@@ -1,4 +1,4 @@
-<dashboard script="autodiscover.js, last3monthsdeployments.js" stylesheet="octopusdeploy.css">
+<dashboard stylesheet="octopusdeploy.css">
   <label>About</label>
   <row>
     <html>
@@ -7,9 +7,7 @@
           <a aria-hidden="true" class="headeranchor-link" href="#octopus-deploy-app-for-splunk" name="user-content-octopus-deploy-app-for-splunk">
             <span class="headeranchor"></span>
           </a>Octopus Deploy App for Splunk</h1>
-        <p>The Octopus Deploy App for Splunk provides a
-          <a href="http://docs.splunk.com/Documentation/Splunk/6.2.4/AdvancedDev/ModInputsIntro">modular input</a>
-          to ingest data from an
+        <p>The Octopus Deploy App for Splunk provides an input to ingest data from an
           <a href="http://octopusdeploy.com/">Octopus Deploy</a>
           instance, and a set of dashboards and views to analyse the data.</p>
         <p>This app works with Octopus Deploy 3.7+.  You will need an

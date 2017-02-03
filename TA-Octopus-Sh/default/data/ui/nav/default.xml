@@ -1,7 +1,7 @@
 <nav color="2E92DF">
-  <view name="overview" default="true"/>
-  <view name="deployments" />
-  <view name="punchcard" />
-  <view name="audit" />
+  <view name="octopus_overview" default="true"/>
+  <view name="octopus_deployment" />
+  <view name="octopus_audit" />
+  <view name="search" />
   <view name="about" />
 </nav>
